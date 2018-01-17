@@ -20,7 +20,7 @@ To install the plugin:
     composer require jfd/gobble
    ```
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Gobble.
+3. In the Control Panel, go to Settings → Plugins and click the "Install" button for Gobble.
 
 ## Using Gobble
 
@@ -33,11 +33,45 @@ A simple example:
 }) %}
 
 <ul>
-    {% for item in response.body.data %}
+    {% for item in response.body %}
         <li>{{ item.title }}</li>
     {% endfor %}
 </ul>
 ```
+
+### Response
+
+The response will be in the form of an array containing three items:
+
+#### statusCode
+
+The HTTP status code, e.g. 200
+
+#### reasonPhrase
+
+The corresponding reason phrase, e.g. "OK"
+
+#### body
+
+The body of the response
+
+```twig
+{% set response = gobble({
+    'url': 'https://example.com/api/endpoint',
+    'method': 'GET'
+}) %}
+
+{{ response.statusCode }} // 200
+{{ response.reasonPhrase }} // OK
+
+<ul>
+    {% for item in response.body %}
+        <li>{{ item.title }}</li>
+    {% endfor %}
+</ul>
+```
+
+
 
 ### Required parameters
 
@@ -115,6 +149,14 @@ Pass an array:
 ```
 
 Pass a string:
+
+```twig
+{% set response = gobble({
+    'url': 'https://example.com/api/endpoint',
+    'method': 'POST',
+    'query': 'key1=value1&key2=value2'
+}) %}
+```
 
 ```twig
 {% set response = gobble({
