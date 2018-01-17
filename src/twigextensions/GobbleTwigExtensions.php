@@ -22,6 +22,14 @@ use jfd\gobble\Gobble;
  */
 class GobbleTwigExtensions extends \Twig_Extension
 {
+    /** @var Client $client */
+    private $client;
+
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+
     /**
      * Returns the name of the extension.
      *
@@ -59,37 +67,20 @@ class GobbleTwigExtensions extends \Twig_Extension
         }
 
         // Get the optional data from the request array and stick it in an array to pass to the request
-        $requestOptions = [];
+        $requestOptions = array_filter($request, function ($key) {
+            return in_array($key, ['auth', 'body', 'json', 'headers', 'query']);
+        }, ARRAY_FILTER_USE_KEY);
 
-        if( array_key_exists('auth', $request) ) {
-            $requestOptions['auth'] = $request['auth'];
-        }
-
-        if( array_key_exists('body', $request) ) {
-            $requestOptions['body'] = $request['body'];
-        }
-
-        if( array_key_exists('headers', $request) ) {
-            $requestOptions['headers'] = $request['headers'];
-        }
-
-        if( array_key_exists('query', $request) ) {
-            $requestOptions['query'] = $request['query'];
-        }
-
-        // Only include json if body has not be defined
-        if( array_key_exists('json', $request) && !array_key_exists('body', $request) ) {
-            $requestOptions['json'] = $request['json'];
+        // If both body and json have been defined, override json
+        if (array_key_exists('body', $request)) {
+            unset($requestOptions['json']);
         }
 
         // Disable throwing of exceptions when HTTP protocol errors (i.e. 4xx and 5xx responses) are encountered
         $requestOptions['http_errors'] = false;
 
-        // Create a new Guzzle client
-        $client = new Client();
-
         // Send the API request
-        $response = $client->request($request['method'], $request['url'], $requestOptions);
+        $response = $this->client->request($request['method'], $request['url'], $requestOptions);
 
         // Get all of the response headers.
         $headers = [];
