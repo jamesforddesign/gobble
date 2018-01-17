@@ -184,11 +184,3 @@ Pass a string:
     'query': 'key1=value1&key2=value2'
 }) %}
 ```
-
-```twig
-{% set response = gobble({
-    'url': 'https://example.com/api/endpoint',
-    'method': 'POST',
-    'query': 'key1=value1&key2=value2'
-}) %}
-```

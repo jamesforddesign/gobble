@@ -77,9 +77,13 @@ class GobbleTwigExtensions extends \Twig_Extension
             $requestOptions['query'] = $request['query'];
         }
 
+        // Only include json if body has not be defined
         if( array_key_exists('json', $request) && !array_key_exists('body', $request) ) {
             $requestOptions['json'] = $request['json'];
         }
+
+        // Disable throwing of exceptions when HTTP protocol errors (i.e. 4xx and 5xx responses) are encountered
+        $requestOptions['http_errors'] = false;
 
         // Create a new Guzzle client
         $client = new Client();
