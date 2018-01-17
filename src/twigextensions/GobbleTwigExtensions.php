@@ -77,7 +77,7 @@ class GobbleTwigExtensions extends \Twig_Extension
             $requestOptions['query'] = $request['query'];
         }
 
-        if( array_key_exists('json', $request) ) {
+        if( array_key_exists('json', $request) && !array_key_exists('body', $request) ) {
             $requestOptions['json'] = $request['json'];
         }
 

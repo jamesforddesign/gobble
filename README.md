@@ -26,8 +26,6 @@ To install the plugin:
 
 3. In the Control Panel, go to Settings → Plugins and click the "Install" button for Gobble.
 
-
-
 ## Using Gobble
 
 A simple example:
@@ -144,6 +142,8 @@ name of a header, and each value is a string or array of strings representing th
 #### json
 
 Use the `json` parameter to easily pass along JSON-encoded data as the body of the request. A Content-Type header of `application/json` will be added if no Content-Type header is already present in the request.
+
+**Note:** The `json` parameter cannot be used with the `body` parameter. If the `body` parameter has been defined, it will override the `json` parameter.
 
 ```twig
 {% set response = gobble({
