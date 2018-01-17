@@ -1,6 +1,6 @@
 # Gobble plugin for Craft 3
 
-A simple plugin for sending REST API requests directly from your templates.
+A simple plugin for making REST API requests directly from your templates.
 
 ## Requirements
 
