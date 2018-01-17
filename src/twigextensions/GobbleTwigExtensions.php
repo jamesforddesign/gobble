@@ -91,6 +91,16 @@ class GobbleTwigExtensions extends \Twig_Extension
         // Send the API request
         $response = $client->request($request['method'], $request['url'], $requestOptions);
 
+        // Get all of the response headers.
+        $headers = [];
+
+        foreach ($response->getHeaders() as $name => $values) {
+            // convert names to CamelCase
+            $formattedName = str_replace( ' ', '', ucwords( str_replace('-', ' ', $name) ) );
+
+            $headers[$formattedName] = implode(', ', $values);
+        }
+
         // Get the response body
         $body = $response->getBody()->getContents();
 
@@ -98,6 +108,7 @@ class GobbleTwigExtensions extends \Twig_Extension
         $output = [
             'statusCode' => $response->getStatusCode(),
             'reasonPhrase' => $response->getReasonPhrase(),
+            'headers' => $headers,
             'body' => $this->isJSON($body) ? json_decode($body) : $body
         ];
 

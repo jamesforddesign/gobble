@@ -45,42 +45,6 @@ A simple example:
 
 
 
-### Response
-
-The response will be in the form of an array containing three items:
-
-#### statusCode
-
-The HTTP status code, e.g. 200
-
-#### reasonPhrase
-
-The corresponding reason phrase, e.g. "OK"
-
-#### body
-
-The body of the response
-
-Example:
-
-```twig
-{% set response = gobble({
-    'url': 'https://example.com/api/endpoint',
-    'method': 'GET'
-}) %}
-
-{{ response.statusCode }} // 200
-{{ response.reasonPhrase }} // OK
-
-<ul>
-    {% for item in response.body %}
-        <li>{{ item.title }}</li>
-    {% endfor %}
-</ul>
-```
-
-
-
 ### Required parameters
 
 #### url
@@ -184,3 +148,73 @@ Pass a string:
     'query': 'key1=value1&key2=value2'
 }) %}
 ```
+
+
+
+### Response
+
+The response will be in the form of an array containing four items:
+
+#### statusCode
+
+The HTTP status code:
+
+```php
+{{ response.statusCode }} // e.g. 200
+```
+
+#### reasonPhrase
+
+The corresponding reason phrase:
+
+```php
+{{ response.reasonPhrase }} // e.g. OK
+```
+
+#### headers
+
+The response headers.
+
+Output all:
+
+```php
+{{ dump(response.headers) }}
+
+/*
+array (size=5)
+  'Date' => string 'Wed, 17 Jan 2018 17:11:41 GMT' (length=29)
+  'Server' => string 'Microsoft-IIS/8.5' (length=17)
+  'ContentLength' => string '2668' (length=4)
+  'ContentType' => string 'application/json; charset=utf-8' (length=31)
+  'XPoweredBy' => string 'ASP.NET' (length=7)
+*/
+```
+
+Output a single header:
+
+```php
+{{ response.headers.ContentType }} // application/json; charset=utf-8
+```
+
+#### body
+
+The body of the response
+
+Example:
+
+```twig
+{% set response = gobble({
+    'url': 'https://example.com/api/endpoint',
+    'method': 'GET'
+}) %}
+
+{{ response.statusCode }} // 200
+{{ response.reasonPhrase }} // OK
+
+<ul>
+    {% for item in response.body %}
+        <li>{{ item.title }}</li>
+    {% endfor %}
+</ul>
+```
+
