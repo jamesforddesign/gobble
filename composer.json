@@ -1,0 +1,40 @@
+{
+    "name": "jfd/gobble",
+    "description": "A simple plugin for sending REST API requests directly from your templates.",
+    "type": "craft-plugin",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "gobble"
+    ],
+    "support": {
+        "docs": "https://github.com/jamesforddesign/gobble/blob/master/README.md",
+        "issues": "https://github.com/jamesforddesign/gobble/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JFD",
+            "homepage": "https://www.jfd.co.uk"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "jfd\\gobble\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Gobble",
+        "handle": "gobble",
+        "schemaVersion": "1.0.0",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/jamesforddesign/gobble/master/CHANGELOG.md",
+        "class": "jfd\\gobble\\Gobble"
+    }
+}
