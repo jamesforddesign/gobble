@@ -77,6 +77,10 @@ class GobbleTwigExtensions extends \Twig_Extension
             $requestOptions['query'] = $request['query'];
         }
 
+        if( array_key_exists('json', $request) ) {
+            $requestOptions['json'] = $request['json'];
+        }
+
         // Create a new Guzzle client
         $client = new Client();
 

@@ -2,9 +2,13 @@
 
 A simple plugin for making REST API requests directly from your templates.
 
+
+
 ## Requirements
 
 This plugin requires Craft 3.
+
+
 
 ## Installation
 
@@ -21,6 +25,8 @@ To install the plugin:
    ```
 
 3. In the Control Panel, go to Settings → Plugins and click the "Install" button for Gobble.
+
+
 
 ## Using Gobble
 
@@ -39,6 +45,8 @@ A simple example:
 </ul>
 ```
 
+
+
 ### Response
 
 The response will be in the form of an array containing three items:
@@ -54,6 +62,8 @@ The corresponding reason phrase, e.g. "OK"
 #### body
 
 The body of the response
+
+Example:
 
 ```twig
 {% set response = gobble({
@@ -82,6 +92,8 @@ The complete URL to which the request should be sent, including the base URL and
 #### method
 
 The HTTP method to use for the request. Can be `GET`, `POST`, `PUT`, `PATCH` or `DELETE`.
+
+
 
 ### Optional parameters
 
@@ -125,6 +137,21 @@ name of a header, and each value is a string or array of strings representing th
     'headers': {
         'key': 'xxxxxxxxxxxxxxxxx',
         'secret': 'xxxxxxxxxxxxxxxxx'
+    }
+}) %}
+```
+
+#### json
+
+Use the `json` parameter to easily upload JSON-encoded data as the body of the request. A Content-Type header of `application/json` will be added if no Content-Type header is already present on the message.
+
+```twig
+{% set response = gobble({
+    'url': 'https://example.com/api/endpoint',
+    'method': 'GET',
+    'json': {
+        'key1': 'value1',
+        'key2': 'value2'
     }
 }) %}
 ```
