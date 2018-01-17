@@ -16,21 +16,12 @@ use GuzzleHttp\Client;
 use jfd\gobble\Gobble;
 
 /**
- * Twig can be extended in many ways; you can add extra tags, filters, tests, operators,
- * global variables, and functions. You can even extend the parser itself with
- * node visitors.
- *
- * http://twig.sensiolabs.org/doc/advanced.html
- *
  * @author    JFD
  * @package   Gobble
  * @since     1.0.0
  */
 class GobbleTwigExtensions extends \Twig_Extension
 {
-    // Public Methods
-    // =========================================================================
-
     /**
      * Returns the name of the extension.
      *
