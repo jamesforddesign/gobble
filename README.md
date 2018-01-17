@@ -143,7 +143,7 @@ name of a header, and each value is a string or array of strings representing th
 
 #### json
 
-Use the `json` parameter to easily upload JSON-encoded data as the body of the request. A Content-Type header of `application/json` will be added if no Content-Type header is already present on the message.
+Use the `json` parameter to easily pass along JSON-encoded data as the body of the request. A Content-Type header of `application/json` will be added if no Content-Type header is already present in the request.
 
 ```twig
 {% set response = gobble({
