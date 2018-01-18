@@ -12,6 +12,7 @@ namespace jfd\gobble;
 
 use Craft;
 use craft\base\Plugin;
+use GuzzleHttp\Client;
 use jfd\gobble\twigextensions\GobbleTwigExtensions;
 
 /**
@@ -35,6 +36,9 @@ class Gobble extends Plugin
 
         self::$plugin = $this;
 
-        Craft::$app->view->twig->addExtension(new GobbleTwigExtensions());
+        // Create a new Guzzle client
+        $client = new Client();
+
+        Craft::$app->view->twig->addExtension(new GobbleTwigExtensions($client));
     }
 }
