@@ -23,18 +23,9 @@ use jfd\gobble\twigextensions\GobbleTwigExtensions;
  */
 class Gobble extends Plugin
 {
-    /**
-     * Enable use of Gobble::$plugin-> in place of Craft::$plugin->
-     *
-     * @var Gobble
-     */
-    public static $plugin;
-
     public function init()
     {
         parent::init();
-
-        self::$plugin = $this;
 
         // Create a new Guzzle client
         $client = new Client();
