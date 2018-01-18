@@ -32,9 +32,8 @@
         "name": "Gobble",
         "handle": "gobble",
         "schemaVersion": "1.0.0",
-        "hasCpSettings": true,
+        "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/jamesforddesign/gobble/master/CHANGELOG.md",
         "class": "jfd\\gobble\\Gobble"
     }
 }
