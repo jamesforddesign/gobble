@@ -107,7 +107,9 @@ name of a header, and each value is a string or array of strings representing th
 
 Use the `json` parameter to easily pass along JSON-encoded data as the body of the request. A Content-Type header of `application/json` will be added if no Content-Type header is already present in the request.
 
-**Note:** The `json` parameter cannot be used with the `body` parameter. If the `body` parameter has been defined, it will override the `json` parameter.
+**Note:** The `json` parameter cannot be used with the `body` parameter. If the `json` parameter has been defined, the `body` parameter will be ignored.
+
+**Also:** if the `json` parameter has been set, a `Content-Type` header will be applied with a value of `application/json`. Any `Content-Type` header set in the template will be ignored.
 
 ```twig
 {% set response = gobble({
@@ -217,4 +219,3 @@ Example:
     {% endfor %}
 </ul>
 ```
-

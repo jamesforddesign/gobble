@@ -71,9 +71,16 @@ class GobbleTwigExtensions extends \Twig_Extension
             return in_array($key, ['auth', 'body', 'json', 'headers', 'query']);
         }, ARRAY_FILTER_USE_KEY);
 
-        // If both body and json have been defined, override json
-        if (array_key_exists('body', $request)) {
+        // If json has been defined
+        if (array_key_exists('json', $request)) {
+            // Create/replace body option with value of json option
+            $requestOptions['body'] = $request['json'];
+
+            // Remove the json option from the array
             unset($requestOptions['json']);
+
+            // Set Content-Type to 'application/json'
+            $requestOptions['headers']['Content-Type'] = 'application/json';
         }
 
         // Disable throwing of exceptions when HTTP protocol errors (i.e. 4xx and 5xx responses) are encountered
