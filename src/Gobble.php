@@ -30,6 +30,6 @@ class Gobble extends Plugin
         // Create a new Guzzle client
         $client = new Client();
 
-        Craft::$app->view->twig->addExtension(new GobbleTwigExtensions($client));
+        Craft::$app->view->registerTwigExtension(new GobbleTwigExtensions($client));
     }
 }
